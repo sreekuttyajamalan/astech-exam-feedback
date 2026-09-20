@@ -1,0 +1,267 @@
+
+/* =========================================================
+   Feedback Page
+   ========================================================= */
+
+.page-container {
+  min-height: 100vh;
+  padding: 40px 24px;
+  box-sizing: border-box;
+}
+
+.feedback-card {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 40px;
+  background: #ffffff;
+  border-radius: 12px;
+  box-sizing: border-box;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+/* =========================================================
+   Header
+   ========================================================= */
+
+.feedback-header {
+  margin-bottom: 28px;
+}
+
+.feedback-header h1 {
+  margin: 0 0 8px;
+  font-size: 28px;
+  line-height: 1.3;
+  font-weight: 700;
+}
+
+.subtitle {
+  margin: 0;
+  color: #666666;
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* =========================================================
+   Student / Exam Information
+   ========================================================= */
+
+.student-exam-card {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px 32px;
+  padding: 22px 24px;
+  margin-bottom: 26px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  box-sizing: border-box;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.info-label {
+  font-size: 13px;
+  font-weight: 600;
+  color: #6b7280;
+}
+
+.info-value {
+  font-size: 15px;
+  font-weight: 500;
+  color: #111827;
+}
+
+/* =========================================================
+   Divider
+   ========================================================= */
+
+.divider {
+  border: 0;
+  border-top: 1px solid #e5e7eb;
+  margin: 26px 0;
+}
+
+/* =========================================================
+   Form Sections
+   ========================================================= */
+
+.form-section {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 9px;
+  font-size: 15px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+/* =========================================================
+   Inputs
+   ========================================================= */
+
+.form-input {
+  width: 100%;
+  min-height: 44px;
+  padding: 10px 12px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+  font-size: 15px;
+  background: #ffffff;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+}
+
+.question-input {
+  max-width: 180px;
+}
+
+/* =========================================================
+   Checkbox Section
+   ========================================================= */
+
+.checkbox-group {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  padding: 4px 0;
+}
+
+.checkbox-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 28px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #374151;
+}
+
+.checkbox-item input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.checkbox-item span {
+  margin: 0;
+}
+
+/* =========================================================
+   Textarea
+   ========================================================= */
+
+.form-textarea {
+  display: block;
+  width: 100%;
+  min-height: 180px;
+  padding: 12px 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  box-sizing: border-box;
+  resize: vertical;
+  font-family: inherit;
+  font-size: 15px;
+  line-height: 1.5;
+  background: #ffffff;
+}
+
+.form-textarea:focus {
+  outline: none;
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.12);
+}
+
+/* =========================================================
+   Submit Button
+   ========================================================= */
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 30px;
+}
+/* =========================
+   Login Page
+   ========================= */
+
+.login-page {
+  min-height: calc(100vh - 140px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 20px;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 32px;
+}
+
+.login-card h1 {
+  margin: 0 0 28px;
+  text-align: center;
+}
+
+.login-card form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+
+/* =========================
+   Feedback Page
+   ========================= */
+
+.feedback-page {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+/* =========================================================
+   Mobile
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .page-container {
+    padding: 20px 12px;
+  }
+
+  .feedback-card {
+    padding: 24px 20px;
+  }
+
+  .feedback-header h1 {
+    font-size: 24px;
+  }
+
+  .student-exam-card {
+    grid-template-columns: 1fr;
+    gap: 14px;
+    padding: 18px;
+  }
+
+  .form-actions {
+    justify-content: stretch;
+  }
+
+  .form-actions button {
+    width: 100%;
+  }
+}
