@@ -2,16 +2,23 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Models\Exam;
 
 class ExamSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     */
     public function run(): void
     {
-        //
+        Exam::create([
+            'name' => 'Laravel Fundamentals',
+        ]);
+
+        Exam::create([
+            'name' => 'PHP Programming',
+        ]);
+
+        Exam::create([
+            'name' => 'Database Fundamentals',
+        ]);
     }
 }
