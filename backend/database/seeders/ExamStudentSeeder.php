@@ -12,7 +12,7 @@ class ExamStudentSeeder extends Seeder
     public function run(): void
     {
         $john = Student::where('username', 'john123')->first();
-        $sreekutty = Student::where('username', 'sreekutty_test')->first();
+        $sreekutty = Student::where('username', 'sreekutty123')->first();
         $sarah = Student::where('username', 'sarah123')->first();
         $david = Student::where('username', 'david123')->first();
 
