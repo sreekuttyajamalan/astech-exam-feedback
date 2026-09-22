@@ -20,7 +20,7 @@ class StudentSeeder extends Seeder
         );
 
         Student::updateOrCreate(
-            ['username' => 'sreekutty_test'],
+            ['username' => 'sreekutty123'],
             [
                 'password' => Hash::make('TestPassword123!'),
                 'firstname' => 'Sreekutty',
