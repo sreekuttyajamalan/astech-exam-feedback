@@ -6,8 +6,10 @@ export const getStudentExam = () => {
 
 export const submitFeedback = (data: {
   exam_id: number
-  problem_types: string[]
-  feedback_text: string
+  question_number: number
+  problems: string[]
+  specific_feedback: string
+  feedback_date: string
 }) => {
   return api.post('/feedback', data)
 }

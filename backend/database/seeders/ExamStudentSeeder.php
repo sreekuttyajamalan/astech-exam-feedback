@@ -11,28 +11,67 @@ class ExamStudentSeeder extends Seeder
 {
     public function run(): void
     {
-        $student = Student::first();
+        $john = Student::where('username', 'john123')->first();
+        $sreekutty = Student::where('username', 'sreekutty_test')->first();
+        $sarah = Student::where('username', 'sarah123')->first();
+        $david = Student::where('username', 'david123')->first();
 
-        $exam = Exam::where(
-            'name',
-            'M1 CAT B2 Physics'
-        )->first();
+        $m1 = Exam::where('name', 'M1 CAT B2 Physics')->first();
+        $m9 = Exam::where('name', 'M9 CAT B1 Human Factors')->first();
+        $m8 = Exam::where('name', 'M8 CAT B2 Aerodynamics')->first();
+        $m3 = Exam::where('name', 'M3 CAT B1 Electrical Fund')->first();
 
-        if (!$student) {
-            throw new \Exception(
-                'No student was created by StudentSeeder.'
-            );
+        if (!$john || !$sreekutty || !$sarah || !$david) {
+            throw new \Exception('Required students were not found.');
         }
 
-        if (!$exam) {
-            throw new \Exception(
-                'M1 CAT B2 Physics exam was not found.'
-            );
+        if (!$m1 || !$m9 || !$m8 || !$m3) {
+            throw new \Exception('Required exams were not found.');
         }
 
-        DB::table('exam_student')->insert([
-            'student_id' => $student->id,
-            'exam_id' => $exam->id,
-        ]);
+        $enrollments = [
+            [
+                'student_id' => $john->id,
+                'exam_id' => $m1->id,
+            ],
+            [
+                'student_id' => $john->id,
+                'exam_id' => $m9->id,
+            ],
+            [
+                'student_id' => $sreekutty->id,
+                'exam_id' => $m1->id,
+            ],
+            [
+                'student_id' => $sreekutty->id,
+                'exam_id' => $m8->id,
+            ],
+            [
+                'student_id' => $sarah->id,
+                'exam_id' => $m9->id,
+            ],
+            [
+                'student_id' => $sarah->id,
+                'exam_id' => $m3->id,
+            ],
+            [
+                'student_id' => $david->id,
+                'exam_id' => $m1->id,
+            ],
+            [
+                'student_id' => $david->id,
+                'exam_id' => $m3->id,
+            ],
+        ];
+
+        foreach ($enrollments as $enrollment) {
+            DB::table('exam_student')->updateOrInsert(
+                [
+                    'student_id' => $enrollment['student_id'],
+                    'exam_id' => $enrollment['exam_id'],
+                ],
+                $enrollment
+            );
+        }
     }
 }
