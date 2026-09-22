@@ -6,7 +6,9 @@ const problems = [
   'Question difficult to understand'
 ]
 
-const selectedProblems = defineModel<string[]>({ default: [] })
+const selectedProblems = defineModel<string[]>('modelValue', {
+  default: () => [],
+})
 </script>
 
 <template>

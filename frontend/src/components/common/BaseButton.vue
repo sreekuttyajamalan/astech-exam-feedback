@@ -1,7 +1,7 @@
 <template>
-  <button 
-    class="base-btn" 
-    :type="type" 
+  <button
+    class="base-btn"
+    :type="type"
     :disabled="loading"
     @click="$emit('click')"
   >
@@ -11,11 +11,12 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
-  type: { type: String, default: 'button' },
-  text: { type: String, default: '' },
-  loadingText: { type: String, default: 'Loading...' },
-  loading: { type: Boolean, default: false }
-})
+defineProps<{
+  type?: 'button' | 'submit' | 'reset'
+  text?: string
+  loadingText?: string
+  loading?: boolean
+}>()
+
 defineEmits(['click'])
 </script>
