@@ -3,19 +3,17 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Student;
 use Illuminate\Http\Request;
 
 class StudentExamController extends Controller
 {
     public function show(Request $request)
     {
-        $request->validate([
-            'student_id' => 'required|integer|exists:students,id',
-        ]);
+        // Get the authenticated student from the Sanctum token
+        $student = $request->user();
 
-        $student = Student::with('exams')
-            ->find($request->student_id);
+        // Load only this student's registered exams
+        $student->load('exams');
 
         return response()->json([
             'student' => [
