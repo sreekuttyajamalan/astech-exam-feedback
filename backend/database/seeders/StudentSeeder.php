@@ -16,6 +16,12 @@ class StudentSeeder extends Seeder
             'firstname' => 'John',
             'lastname' => 'Smith',
         ]);
+        Student::create([
+            'username' => 'sreekuttykaajamalan@gmaail.com',
+            'password' => Hash::make('sree1234567890'),
+            'firstname' => 'Sreekutty',
+            'lastname' => 'Ajamalan',
+        ]);
 
         Student::create([
             'username' => 'sarah123',

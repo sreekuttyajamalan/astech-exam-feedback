@@ -32,13 +32,19 @@ const handleLogin = async () => {
     console.log('2. About to call Axios')
 
     const response = await api.post('/login', {
-      username: username.value,
-      password: password.value,
-    })
+  username: username.value,
+  password: password.value,
+})
 
     console.log('3. Axios request completed')
     console.log('4. Response status:', response.status)
     console.log('5. Response data:', response.data)
+
+    // Save logged-in student information
+    localStorage.setItem(
+      'student',
+      JSON.stringify(response.data.student)
+    )
 
     router.push('/feedback')
 
