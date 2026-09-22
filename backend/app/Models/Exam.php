@@ -2,19 +2,31 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
-use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Exam extends Model
 {
-    public function students(): BelongsToMany
-    {
-        return $this->belongsToMany(Student::class, 'exam_student');
-    }
+    use HasFactory;
 
-    public function feedbacks(): HasMany
+    protected $table = 'exams';
+
+    protected $fillable = [
+        'name',
+        'exam_date',
+    ];
+
+    protected $casts = [
+        'exam_date' => 'date',
+    ];
+
+    public function students()
     {
-        return $this->hasMany(Feedback::class);
+        return $this->belongsToMany(
+            Student::class,
+            'exam_student',
+            'exam_id',
+            'student_id'
+        );
     }
 }

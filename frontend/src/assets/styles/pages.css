@@ -127,6 +127,7 @@
   max-width: 180px;
 }
 
+
 /* =========================================================
    Checkbox Section
    ========================================================= */
@@ -264,4 +265,26 @@
   .form-actions button {
     width: 100%;
   }
+}
+/* =========================================================
+   FEEDBACK HEADER
+   ========================================================= */
+
+.header-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.header-top h1 {
+  margin: 0;
+}
+
+.logout-button {
+  width: 75px;
+  min-width: 75px;
+  height: 36px;
+  padding: 6px 10px;
+  font-size: 14px;
 }

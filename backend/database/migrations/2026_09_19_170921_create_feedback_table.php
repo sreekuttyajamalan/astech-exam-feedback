@@ -11,7 +11,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-         Schema::create('feedback', function (Blueprint $table) {
+        Schema::create('feedback', function (Blueprint $table) {
             $table->id();
 
             $table->foreignId('student_id')
@@ -22,9 +22,13 @@ return new class extends Migration
                 ->constrained('exams')
                 ->cascadeOnDelete();
 
-            $table->json('problem_types')->nullable();
+            $table->unsignedInteger('question_number');
 
-            $table->text('feedback');
+            $table->json('problems')->nullable();
+
+            $table->text('specific_feedback')->nullable();
+
+            $table->date('feedback_date');
 
             $table->timestamps();
         });
