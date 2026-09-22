@@ -12,13 +12,10 @@ const username = ref('')
 const password = ref('')
 const errorMessage = ref('')
 const loading = ref(false)
+
 const router = useRouter()
 
 const handleLogin = async () => {
-  console.log('1. handleLogin started')
-  console.log('Username:', username.value)
-  console.log('Password:', password.value)
-
   errorMessage.value = ''
 
   if (!username.value || !password.value) {
@@ -29,37 +26,36 @@ const handleLogin = async () => {
   loading.value = true
 
   try {
-    console.log('2. About to call Axios')
-
     const response = await api.post('/login', {
-  username: username.value,
-  password: password.value,
-})
+      username: username.value,
+      password: password.value,
+    })
 
-    console.log('3. Axios request completed')
-    console.log('4. Response status:', response.status)
-    console.log('5. Response data:', response.data)
+    // Save authentication token
+    localStorage.setItem(
+      'token',
+      response.data.token
+    )
 
-    // Save logged-in student information
+    // Save student information for display purposes
     localStorage.setItem(
       'student',
       JSON.stringify(response.data.student)
     )
 
+    // Redirect after successful login
     router.push('/feedback')
 
   } catch (error: any) {
-    console.log('6. Axios request failed')
-    console.error('Error:', error)
-    console.error('Response:', error.response)
-
     if (error.response?.status === 401) {
       errorMessage.value = 'Invalid username or password.'
+    } else if (error.response?.status === 422) {
+      errorMessage.value = 'Please enter valid login details.'
     } else {
       errorMessage.value = 'Unable to login. Please try again.'
     }
+
   } finally {
-    console.log('7. Login finished')
     loading.value = false
   }
 }

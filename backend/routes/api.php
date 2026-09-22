@@ -7,6 +7,10 @@ use App\Http\Controllers\Api\FeedbackController;
 
 Route::post('/login', [AuthController::class, 'login']);
 
-Route::get('/student/exam', [StudentExamController::class, 'show']);
+Route::middleware('auth:sanctum')->group(function () {
 
-Route::post('/feedback', [FeedbackController::class, 'store']);
+    Route::get('/student/exam', [StudentExamController::class, 'show']);
+
+    Route::post('/feedback', [FeedbackController::class, 'store']);
+
+});

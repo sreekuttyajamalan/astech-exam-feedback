@@ -21,20 +21,17 @@ class AuthController extends Controller
             $request->username
         )->first();
 
-        if (!$student) {
+        if (!$student || !Hash::check($request->password, $student->password)) {
             return response()->json([
                 'message' => 'Invalid username or password'
             ], 401);
         }
 
-        if (!Hash::check($request->password, $student->password)) {
-            return response()->json([
-                'message' => 'Invalid username or password'
-            ], 401);
-        }
+        $token = $student->createToken('student-token')->plainTextToken;
 
         return response()->json([
             'message' => 'Login successful',
+            'token' => $token,
             'student' => [
                 'id' => $student->id,
                 'username' => $student->username,

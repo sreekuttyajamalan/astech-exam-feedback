@@ -10,31 +10,40 @@ class StudentSeeder extends Seeder
 {
     public function run(): void
     {
-        Student::create([
-            'username' => 'john123',
-            'password' => Hash::make('password123'),
-            'firstname' => 'John',
-            'lastname' => 'Smith',
-        ]);
-        Student::create([
-            'username' => 'sreekuttykaajamalan@gmaail.com',
-            'password' => Hash::make('sree1234567890'),
-            'firstname' => 'Sreekutty',
-            'lastname' => 'Ajamalan',
-        ]);
+        Student::updateOrCreate(
+            ['username' => 'john123'],
+            [
+                'password' => Hash::make('TestPassword123!'),
+                'firstname' => 'John',
+                'lastname' => 'Smith',
+            ]
+        );
 
-        Student::create([
-            'username' => 'sarah123',
-            'password' => Hash::make('password123'),
-            'firstname' => 'Sarah',
-            'lastname' => 'Williams',
-        ]);
+        Student::updateOrCreate(
+            ['username' => 'sreekutty123'],
+            [
+                'password' => Hash::make('TestPassword123!'),
+                'firstname' => 'Sreekutty',
+                'lastname' => 'Test',
+            ]
+        );
 
-        Student::create([
-            'username' => 'david123',
-            'password' => Hash::make('password123'),
-            'firstname' => 'David',
-            'lastname' => 'Brown',
-        ]);
+        Student::updateOrCreate(
+            ['username' => 'sarah123'],
+            [
+                'password' => Hash::make('TestPassword123!'),
+                'firstname' => 'Sarah',
+                'lastname' => 'Williams',
+            ]
+        );
+
+        Student::updateOrCreate(
+            ['username' => 'david123'],
+            [
+                'password' => Hash::make('TestPassword123!'),
+                'firstname' => 'David',
+                'lastname' => 'Brown',
+            ]
+        );
     }
 }

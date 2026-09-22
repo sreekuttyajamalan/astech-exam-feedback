@@ -10,9 +10,10 @@ class FeedbackController extends Controller
 {
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'student_id' => 'required|integer|exists:students,id',
+        // Get the authenticated student from the Sanctum token
+        $student = $request->user();
 
+        $validated = $request->validate([
             'exam_id' => 'required|integer|exists:exams,id',
 
             'question_number' => 'required|integer|min:1',
@@ -24,6 +25,13 @@ class FeedbackController extends Controller
             'feedback_date' => 'required|date',
         ]);
 
+        // Check that the authenticated student is enrolled in the exam
+        if (!$student->exams()->where('exams.id', $validated['exam_id'])->exists()) {
+            return response()->json([
+                'message' => 'You are not enrolled in this exam.'
+            ], 403);
+        }
+
         if (
             empty($validated['problems']) &&
             empty(trim($validated['specific_feedback'] ?? ''))
@@ -34,11 +42,17 @@ class FeedbackController extends Controller
         }
 
         $feedback = Feedback::create([
-            'student_id' => $validated['student_id'],
+            // Student ID comes from authenticated user
+            'student_id' => $student->id,
+
             'exam_id' => $validated['exam_id'],
+
             'question_number' => $validated['question_number'],
+
             'problems' => $validated['problems'] ?? [],
+
             'specific_feedback' => $validated['specific_feedback'] ?? null,
+
             'feedback_date' => $validated['feedback_date'],
         ]);
 
@@ -48,3 +62,4 @@ class FeedbackController extends Controller
         ], 201);
     }
 }
+
